@@ -1,6 +1,6 @@
 require 'google_drive'
 require_relative 'townhall-scrap'
-
+require 'json'
 $data = get_hash
 
 # On crée une méthode qui appelle drive et configure la spreadsheet
@@ -27,3 +27,9 @@ end
  
 # On appelle la dernière méthode
 upload_hash
+
+# On enregistre le fichier en JSON
+
+File.open("/Users/jkronovsek/Desktop/townhall.json","w") do |f|
+  f.write(JSON.pretty_generate($data))
+end

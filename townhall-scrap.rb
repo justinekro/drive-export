@@ -25,7 +25,7 @@ def get_the_email_of_a_townhal_from_its_webpage(result)
 	link = page_mairie.css('p:contains("@")').text
 
 # On récupère le nom de la commune	
-	townhall = page_mairie.css('h1').text
+	townhall = page_mairie.css('h1').text[11..-9]
 
 # On crée le hash correspondant
 	$data[townhall]=link
