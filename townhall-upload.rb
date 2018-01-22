@@ -1,6 +1,7 @@
 require 'google_drive'
 require_relative 'townhall-scrap'
 require 'json'
+require 'csv'
 $data = get_hash
 
 # On crée une méthode qui appelle drive et configure la spreadsheet
@@ -29,7 +30,17 @@ end
 upload_hash
 
 # On enregistre le fichier en JSON
-
 File.open("/Users/jkronovsek/Desktop/townhall.json","w") do |f|
   f.write(JSON.pretty_generate($data))
 end
+
+# On enregistre le fichier en CSV
+CSV.open("/Users/jkronovsek/Desktop/townhall.csv", "w") do |csv|
+  JSON.parse(File.open("/Users/jkronovsek/Desktop/townhall.json").read).each do |hashes|
+   csv << hashes.values_at(0,1)
+  end
+end
+
+
+
+

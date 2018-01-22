@@ -24,6 +24,9 @@ def get_the_email_of_a_townhal_from_its_webpage(result)
 # On récupère les adresses mail
 	link = page_mairie.css('p:contains("@")').text
 
+# On supprime le premier caractère qui est un espace	
+	link[0]=""
+
 # On récupère le nom de la commune	
 	townhall = page_mairie.css('h1').text[11..-9]
 
